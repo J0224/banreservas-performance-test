@@ -1,26 +1,26 @@
 # Banreservas Performance Test
 
-Performance testing solution for the REST API endpoint:
+Solución de pruebas de performance desarrollada con k6 para evaluar el endpoint REST:
 
 GET https://fakestoreapi.com/products/{ID}
 
 ---
 
-# Objective
+# Objetivo
 
-Validate API stability, response times, throughput, and error rates under concurrent load.
-
----
-
-# Tools Used
-
-- k6
-- JavaScript
-- CSV dynamic data
+Validar la estabilidad, tiempos de respuesta, throughput y tasa de errores de la API bajo carga concurrente.
 
 ---
 
-# Project Structure
+# Herramientas utilizadas
+
+* k6
+* JavaScript
+* CSV para datos dinámicos
+
+---
+
+# Estructura del proyecto
 
 ```text
 banreservas-performance-test/
@@ -28,35 +28,40 @@ banreservas-performance-test/
 ├── data/
 │   └── products.csv
 │
+├── docs/
+│   └── Performance_Test_Report.pdf
+│
+├── reports/
+│
 ├── scripts/
 │   └── test.js
 │
-├── reports/
+├── .gitignore
 │
 └── README.md
 ```
 
 ---
 
-# Test Strategy
+# Estrategia de prueba
 
-## Load Pattern
+## Patrón de carga
 
-- Ramp-up: 10 users over 10 seconds
-- Stable load: 10 users for 20 seconds
-- Ramp-down: 10 seconds
-
----
-
-# Dynamic Data
-
-The test uses dynamic product IDs loaded from a CSV file.
+* Ramp-up: incremento progresivo de usuarios
+* Carga estable concurrente
+* Ramp-down controlado
 
 ---
 
-# Execution
+# Datos dinámicos
 
-## Run test
+La prueba utiliza IDs dinámicos obtenidos desde un archivo CSV.
+
+---
+
+# Ejecución
+
+## Ejecutar prueba
 
 ```bash
 k6 run scripts/test.js
@@ -64,43 +69,41 @@ k6 run scripts/test.js
 
 ---
 
-# Thresholds
+# Thresholds configurados
 
-| Metric | Threshold |
-|---|---|
-| P95 Response Time | < 800ms |
-| Average Response Time | < 500ms |
-| Error Rate | < 1% |
-
----
-
-# Results
-
-## Successful Execution
-
-- 100% checks passed
-- 0% error rate
-- Average response time: ~195ms
-- P95 response time: ~447ms
+| Métrica           | Threshold |
+| ----------------- | --------- |
+| P95 Response Time | < 800ms   |
+| Avg Response Time | < 500ms   |
+| Error Rate        | < 1%      |
 
 ---
 
-# Senior SDET Best Practices Applied
+# Resultados obtenidos
 
-- Dynamic test data
-- Threshold validations
-- Functional checks
-- Ramp-up/ramp-down strategy
-- Realistic user delays
-- Maintainable structure
-- Data-driven testing
+* 100% de checks exitosos
+* 0% de error rate
+* Avg response time: ~195ms
+* P95: ~447ms
 
 ---
 
-# Possible Improvements
+# Buenas prácticas aplicadas
 
-- HTML reporting
-- CI/CD integration
-- Docker support
-- Grafana dashboards
-- Distributed load testing
+* Data-driven testing
+* Threshold validations
+* Functional checks
+* Ramp-up y ramp-down
+* Simulación realista de usuarios
+* Código mantenible
+* Estructura escalable
+
+---
+
+# Posibles mejoras
+
+* Reportes HTML
+* Integración CI/CD
+* Dockerización
+* Dashboards con Grafana
+* Pruebas distribuidas
